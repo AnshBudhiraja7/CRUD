@@ -19,8 +19,12 @@ app.post("/CreateUser",async(req,resp)=>{
     return resp.status(404).send({Message:"Field is Empty"})  
 })
 app.get("/ShowUsers",async(req,resp)=>{
+    try{
     const result=await schemas.find({})
     return resp.status(201).send({result,Message:"Fetched Successfully"})
+    }catch(error){
+    return resp.status(500).send({error,Message:"Internal Server Error"})
+    }
 })
 app.delete("/DeleteUser",async(req,resp)=>{
     const result=await schemas.deleteOne({_id:req.body.id})
