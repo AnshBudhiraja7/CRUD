@@ -2,6 +2,8 @@ const Connection=require("./Connection")
 const schemas=require("./Schema")
 const express=require("express")
 const cors=require("cors")
+const dotenv=require("dotenv")
+dotenv.config()
 const app=express()
 app.use(express.json())
 app.use(cors())
@@ -28,4 +30,7 @@ app.put("/UpdateUser",async(req,resp)=>{
     const result=await schemas.updateOne({_id:req.body.id},{$set:req.body.data})
     return resp.status(201).send({result,Message:"Updated Successfully"})  
 })
-app.listen(3010)
+app.listen(process.env.PORT || 3010,()=>{
+    console.log("Server Started At:"+process.env.PORT || 3010);
+    
+})
