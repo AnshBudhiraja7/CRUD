@@ -22,6 +22,7 @@ app.post("/CreateUser",async(req,resp)=>{
     return resp.status(500).send({Message:"Internal Server Error"})  
     }  
 })
+
 app.get("/ShowUsers",async(req,resp)=>{
     try {
     const result=await schemas.find()
